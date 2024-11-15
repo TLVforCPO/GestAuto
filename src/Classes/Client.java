@@ -24,4 +24,7 @@ public class Client {
         this.email_client=email_client;
         this.mdp_client=mdp_client;
     }
+    
+    //Méthodes
+    
 }
