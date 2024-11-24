@@ -1,13 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
+ *
  */
 package Classes;
 
-/**
- *
- * @author thoma
- */
 public class Article {
     //Attributs
     private int ID_article,stock_article,ID_concession;
@@ -21,5 +17,17 @@ public class Article {
         this.desc_article=desc_article;
         this.nom_article=nom_article;
         this.stock_article=stock_article;
+    }
+    
+    //Méthodes
+    public String versFichier(){
+        return String.valueOf(ID_article+";"+stock_article+";"+ID_concession+";"+nom_article+";"+desc_article+";"+PU_article);
+    }
+    public String toString(){
+        return "ID_article : "+ID_article+System.lineSeparator()+"ID_concession : "+ID_concession+System.lineSeparator()+"nom_article : "+nom_article+System.lineSeparator()+"desc_article : "+desc_article+System.lineSeparator()+"PU_article : "+PU_article+System.lineSeparator()+"stock_article : "+stock_article+System.lineSeparator();
+    }
+    
+    public int getStock(){
+        return stock_article;
     }
 }

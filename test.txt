@@ -1,0 +1,41 @@
+tAcheter
+1
+0;0;24/11/24;2
+tAdministrer
+1
+0;0;05/10/24
+tArticle
+2
+0;5;0;lave glace;liquide lave glace déperlant;5
+1;7;0;essuie-glace;essuie-glace volksvagen golf 5;30
+tClient
+1
+0;DUPONT;Hugo;74 rue de la Paix;0603849538;h.dupont@gmal.com;toto
+tCommande
+1
+0;24/11/24;10
+tConcession
+2
+0;40206839402674;internet;nc
+1;05794659352946;LUXURY CARS;92 rue des Transports
+tEmploye
+1
+0;0694274961;1;DIA;Yoan;16 rue du Fleuve;y.dia@gestauto.com;bloblo;directeur
+tFacture
+1
+0;0;0;0;24/11/24;10
+tGerer
+1
+0;0;10/09/24
+tMarque
+1
+0;Mazda;Japon
+tModele
+1
+0;0;RX-7;Mazda;Japon
+tTraiter
+1
+0;0;18/04/24
+tVehicule
+1
+0;30864;1;0;0;05/07/92;bon;oui;0;RX-7;Mazda;Japon

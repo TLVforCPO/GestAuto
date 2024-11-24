@@ -1,13 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
+ *
  */
 package Classes;
 
-/**
- *
- * @author thoma
- */
 public class Facture extends Commande{
     //Attributs
     private int ID_facture,ID_concession,ID_client,ID_commande;
@@ -22,5 +18,14 @@ public class Facture extends Commande{
         this.ID_facture=ID_facture;
         this.date_facture=date_facture;
         this.prix_facture=prix_facture;
+    }
+    
+    //Méthodes
+    public String versFichier(){
+        return String.valueOf(ID_client+";"+ID_commande+";"+ID_concession+";"+ID_facture+";"+date_facture+";"+prix_facture);
+    }
+    
+    public String toString(){
+        return "ID_facture : "+ID_facture+System.lineSeparator()+"ID_concession : "+ID_concession+System.lineSeparator()+"ID_client : "+ID_client+System.lineSeparator()+"ID_commande : "+ID_commande+System.lineSeparator()+"prix_facture : "+prix_facture+System.lineSeparator()+"date_facture : "+date_facture+System.lineSeparator();
     }
 }

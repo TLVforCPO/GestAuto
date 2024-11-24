@@ -1,13 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
+ * 
  */
 package Classes;
 
-/**
- *
- * @author thoma
- */
 public class Vehicule extends Modele {
     //Attributs
     private int ID_vehicule, kilometrage_vehicule,ID_concession,ID_commande,ID_modele;
@@ -24,5 +20,14 @@ public class Vehicule extends Modele {
         this.disponibilite_vehicule=disponibilite_vehicule;
         this.etat_vehicule=etat_vehicule;
         this.kilometrage_vehicule=kilometrage_vehicule;
+    }
+    
+    //Méthodes
+    public String versFichier(){
+        return String.valueOf(ID_vehicule+";"+kilometrage_vehicule+";"+ID_concession+";"+ID_commande+";"+ID_modele+";"+date_mec_vehicule+";"+etat_vehicule+";"+disponibilite_vehicule+";"+this.getIDMarque()+";"+this.getNomModele()+";"+this.getNomMarque()+";"+this.getPaysMarque());
+    }
+    
+    public String toString(){
+        return "ID_vehicule : "+ID_vehicule+System.lineSeparator()+"ID_concession : "+ID_concession+System.lineSeparator()+"ID_commande : "+ID_commande+System.lineSeparator()+"ID_modele : "+ID_modele+System.lineSeparator()+"ID_marque : "+this.getIDMarque()+System.lineSeparator()+"kilometrage_vehicule : "+kilometrage_vehicule+System.lineSeparator()+"date_mec_vehicule : "+date_mec_vehicule+System.lineSeparator()+"etat_vehicule : "+etat_vehicule+System.lineSeparator()+"disponibilite_vehicule : "+disponibilite_vehicule+System.lineSeparator()+"nom_modele : "+this.getNomModele()+System.lineSeparator()+"nom_marque : "+this.getNomMarque()+System.lineSeparator()+"pays_marque : "+this.getPaysMarque()+System.lineSeparator();
     }
 }

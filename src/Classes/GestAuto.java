@@ -1,16 +1,16 @@
 package Classes;
 
+import java.io.IOException;
+
 /**
  *
- * @author thoma
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
  */
 public class GestAuto {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws IOException {
+        Principale P=new Principale();
+        P.start();
     }
     
 }

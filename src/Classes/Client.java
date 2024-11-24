@@ -1,13 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
+ *
  */
 package Classes;
 
-/**
- *
- * @author thoma
- */
 public class Client {
     
     //Attributs
@@ -26,5 +22,38 @@ public class Client {
     }
     
     //Méthodes
+    public String versFichier(){
+        return String.valueOf(ID_client+";"+nom_client+";"+prenom_client+";"+adresse_client+";"+tel_client+";"+email_client+";"+mdp_client);
+    }
     
+    public String getEmail(){
+        return email_client;
+    }
+    
+    public String getMDP(){
+        return mdp_client;
+    }
+    
+    public String toString(){
+        return "ID_client : "+ID_client+System.lineSeparator()+"nom_client : "+nom_client+System.lineSeparator()+"prenom_client : "+prenom_client+System.lineSeparator()+"adresse_client : "+adresse_client+System.lineSeparator()+"email_client : "+email_client+System.lineSeparator()+"tel_client : "+tel_client+System.lineSeparator()+"mdp_client : "+mdp_client+System.lineSeparator();
+    }
+    
+    public void modifNom(String nom){
+        nom_client=nom;
+    }
+    public void modifPrenom(String prenom){
+        prenom_client=prenom;
+    }
+    public void modifAdresse(String adresse){
+        adresse_client=adresse;
+    }
+    public void modifTel(String tel){
+        tel_client=Integer.parseInt(tel);
+    }
+    public void modifEmail(String email){
+        email_client=email;
+    }
+    public void modifMDP(String mdp){
+        mdp_client=mdp;
+    }
 }

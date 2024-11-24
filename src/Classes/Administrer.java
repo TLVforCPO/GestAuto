@@ -1,13 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author DIA Yoan, GERARD Ilyes, LE VAN Thomas, RAGEH Nydel
+ *
  */
 package Classes;
 
-/**
- *
- * @author thoma
- */
 public class Administrer {
     //Attributs
     private int ID_employe,ID_article;
@@ -18,5 +14,13 @@ public class Administrer {
         this.ID_employe=ID_employe;
         this.ID_article=ID_article;
         this.date_modif_article=date_modif_article;
+    }
+    
+    //Méthodes
+    public String versFichier(){
+        return String.valueOf(ID_employe+";"+ID_article+";"+date_modif_article);
+    }
+    public String toString(){
+        return "ID_employe : "+ID_employe+System.lineSeparator()+"ID_article : "+ID_article+System.lineSeparator()+"date_modif_article : "+date_modif_article+System.lineSeparator();
     }
 }
