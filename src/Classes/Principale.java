@@ -743,7 +743,9 @@ public class Principale {
                 System.out.println("2) Créer/modifier un article");
                 System.out.println("3) Vendre un véhicule");
                 System.out.println("4) Vendre un article");
-                System.out.println("5) EXIT");
+                System.out.println("5) Créer une marque");
+                System.out.println("6) Créer un modèle");
+                System.out.println("7) EXIT");
                 System.out.println();
                 System.out.println("Choix :");
                 choix = sc.nextInt();
@@ -764,6 +766,12 @@ public class Principale {
                 this.listeArticleEmploye(true);
                 b = true;
             } else if (choix == 5) {
+                //this.ajouterMarque();
+                b = true;
+            } else if (choix == 6) {
+                //this.ajouterModele();
+                b = true;
+            } else if (choix == 7) {
                 b = true;
             } else if (b2 == false) {
                 System.out.println("Choix impossible, réessayez !");
@@ -1156,7 +1164,7 @@ public class Principale {
             }
             if (nVeh < tVehicule.size()) {
                 if (tVehicule.get(nVeh).getDispo().equals("oui")) {
-                    this.majAchatVehiculeEmploye(nVeh,ID_clt);
+                    this.majAchatVehiculeEmploye(nVeh, ID_clt);
                     this.accueilEmploye();
                     b = true;
                 }
@@ -1172,11 +1180,44 @@ public class Principale {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
         String prix = tVehicule.get(nVeh).getPrix();
-        tCommande.add(new Commande(tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(),ID_clt, formattedDate, prix));
+        tCommande.add(new Commande(tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(), ID_clt, formattedDate, prix));
         tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(), tFacture.size(), formattedDate, prix));
         tVehicule.get(nVeh).majVente(tCommande.size());
         this.sauvegarder();
     }
     
+    public void ajouterMarque() throws IOException{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez les données :");
+        System.out.println();
+        System.out.println("Nom marque :");
+        String nom_marque = sc.nextLine();
+        System.out.println("Pays :");
+        String pays_marque = sc.nextLine();
+        tMarque.add(new Marque(tMarque.size(),nom_marque,pays_marque));
+        this.sauvegarder();
+    }
     
+    public void ajouterModele() throws IOException{
+        System.out.println("LISTE DES MARQUES :");
+        System.out.println();
+        for(int i=0;i<tMarque.size();i++){
+            System.out.println(tMarque.get(i));
+        }
+        System.out.println();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Entrez les données :");
+        System.out.println();
+        System.out.println("ID_marque :");
+        int ID_marque = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Nom du modèle :");
+        String nom_modele = sc.nextLine();
+        System.out.println("Nom de la marque :");
+        String nom_marque = sc.nextLine();
+        System.out.println("Pays de la marque :");
+        String pays_marque = sc.nextLine();
+        tModele.add(new Modele(ID_marque,tModele.size(),nom_modele,nom_marque,pays_marque));
+        this.sauvegarder();
+    }
 }
