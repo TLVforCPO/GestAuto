@@ -10,17 +10,17 @@ tArticle
 1;7;0;essuie-glace;essuie-glace volksvagen golf 5;30
 tClient
 1
-0;DUPONT;Hugo;74 rue de la Paix;0603849538;h.dupont@gmal.com;toto
+0;DUPONT;Hugo;74 rue de la Paix;603849538;h.dupont@gmal.com;toto
 tCommande
 1
-0;0;0;24/11/24;10
+0;24/11/24;10;0;0
 tConcession
 2
 0;40206839402674;internet;nc
 1;05794659352946;LUXURY CARS;92 rue des Transports
 tEmploye
 1
-0;0694274961;1;DIA;Yoan;16 rue du Fleuve;y.dia@gestauto.com;bloblo;directeur
+0;694274961;1;DIA;Yoan;16 rue du Fleuve;y.dia@gestauto.com;bloblo;directeur
 tFacture
 1
 0;0;0;0;24/11/24;10
@@ -37,5 +37,6 @@ tTraiter
 1
 0;0;18/04/24
 tVehicule
-1
+2
 0;30864;1;0;0;05/07/92;bon;oui;0;RX-7;Mazda;Japon;30000
+1;45000;1;0;0;15/05/91;bon;oui;0;RX-7;Mazda;Japon;35000

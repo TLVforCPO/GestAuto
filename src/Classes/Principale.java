@@ -341,7 +341,7 @@ public class Principale {
     }
 
     //Portail de connexion client
-    public void connexionClient() {
+    public void connexionClient() throws IOException {
         boolean b = false;
         Scanner sc = new Scanner(System.in);
         String ID = "";
@@ -370,7 +370,7 @@ public class Principale {
     }
 
     //Portail de connexion employé
-    public void connexionEmploye() {
+    public void connexionEmploye() throws IOException {
         boolean b = false;
         Scanner sc = new Scanner(System.in);
         String ID = "";
@@ -399,7 +399,7 @@ public class Principale {
     }
 
     //Page d'accueil espace client
-    public void accueilClient() {
+    public void accueilClient() throws IOException {
         System.out.println();
         System.out.println("ACCUEIL CLIENT :");
         boolean b = false;
@@ -441,7 +441,7 @@ public class Principale {
         }
     }
 
-    public void modifInfoClient() {
+    public void modifInfoClient() throws IOException {
         System.out.println();
         System.out.println("Mes informations :");
         boolean b = false;
@@ -569,10 +569,11 @@ public class Principale {
                 System.out.println("Choix impossible, réessayez !");
             }
         }
+        this.sauvegarder();
     }
 
     //Permet de lister les articles
-    public void listeArticleClient() {
+    public void listeArticleClient() throws IOException {
         System.out.println("LISTE DES ARTICLES :");
         System.out.println();
         for (int i = 0; i < tArticle.size(); i++) {
@@ -609,7 +610,7 @@ public class Principale {
     }
 
     //Permet de lister les véhicules
-    public void listeVehiculeClient() {
+    public void listeVehiculeClient() throws IOException {
         System.out.println("LISTE DES VEHICULES :");
         System.out.println();
         for (int i = 0; i < tVehicule.size(); i++) {
@@ -646,7 +647,7 @@ public class Principale {
     }
 
     //Permet de choisir son article pour un client
-    public void acheterArticleClient() {
+    public void acheterArticleClient() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int nArt = 0, qt = 0;
@@ -675,7 +676,7 @@ public class Principale {
     }
 
     //Permet de choisir son véhicule pour un client
-    public void acheterVehiculeClient() {
+    public void acheterVehiculeClient() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int nVeh = 0;
@@ -702,7 +703,7 @@ public class Principale {
     }
 
     //Mets à jour la base de donnée pour un achat d'article par un client
-    public void majAchatArticleClient(int nArt, int qt, int ID_conc) {
+    public void majAchatArticleClient(int nArt, int qt, int ID_conc) throws IOException {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
@@ -711,10 +712,11 @@ public class Principale {
         tAcheter.add(new Acheter(tCommande.size(), tArticle.size(), formattedDate, qt));
         tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), ID_conc, tFacture.size(), formattedDate, String.valueOf(prix)));
         tArticle.get(nArt).majStock(qt);
+        this.sauvegarder();
     }
 
     //Mets à jour la base de donnée pour un achat d'un véhicule par un client
-    public void majAchatVehiculeClient(int nVeh, int ID_conc) {
+    public void majAchatVehiculeClient(int nVeh, int ID_conc) throws IOException {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
@@ -722,10 +724,11 @@ public class Principale {
         tCommande.add(new Commande(tCommande.size(), tVehicule.get(nVeh).getIDConc(), tClient.get(indiceConnexion).getID(), formattedDate, prix));
         tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), ID_conc, tFacture.size(), formattedDate, prix));
         tVehicule.get(nVeh).majVente(tCommande.size());
+        this.sauvegarder();
     }
 
     //Page d'accueil espace employé
-    public void accueilEmploye() {
+    public void accueilEmploye() throws IOException {
         System.out.println();
         System.out.println("ACCUEIL EMPLOYE :");
         boolean b = false;
@@ -769,7 +772,7 @@ public class Principale {
     }
 
     //Permet de lister les articles
-    public void listeArticleEmploye(boolean bool) {
+    public void listeArticleEmploye(boolean bool) throws IOException {
         System.out.println("LISTE DES ARTICLES :");
         System.out.println();
         for (int i = 0; i < tArticle.size(); i++) {
@@ -837,7 +840,7 @@ public class Principale {
     }
 
     //Permet de lister les véhicules
-    public void listeVehiculeEmploye(boolean bool) {
+    public void listeVehiculeEmploye(boolean bool) throws IOException {
         System.out.println("LISTE DES VEHICULE :");
         System.out.println();
         for (int i = 0; i < tVehicule.size(); i++) {
@@ -905,7 +908,7 @@ public class Principale {
     }
 
     // Vérification des données entrées à faire !!!
-    public void ajouterArticle() {
+    public void ajouterArticle() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez les données :");
         System.out.println();
@@ -918,11 +921,12 @@ public class Principale {
         System.out.println("Stock :");
         int stock = sc.nextInt();
         tArticle.add(new Article(tArticle.size(), stock, tEmploye.get(indiceConnexion).getIDConc(), nom_art, desc_art, PU));
+        this.sauvegarder();
         this.accueilEmploye();
     }
 
     // Gestion de la modification en fonction du statut à faire !!!
-    public void modifArticle() {
+    public void modifArticle() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int choix = 0;
@@ -987,10 +991,11 @@ public class Principale {
                 System.out.println("Choix impossible, réessayez !");
             }
         }
+        this.sauvegarder();
     }
 
     //Permet de choisir son article pour un client
-    public void acheterArticleEmploye() {
+    public void acheterArticleEmploye() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int nArt = 0, qt = 0;
@@ -1022,7 +1027,7 @@ public class Principale {
     }
 
     //Mets à jour la base de donnée pour un achat d'article par un employé
-    public void majAchatArticleEmploye(int nArt, int qt, int ID_clt) {
+    public void majAchatArticleEmploye(int nArt, int qt, int ID_clt) throws IOException {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
@@ -1032,10 +1037,11 @@ public class Principale {
         tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(), tFacture.size(), formattedDate, String.valueOf(prix)));
         tArticle.get(nArt).majStock(qt);
         tTraiter.add(new Traiter(tEmploye.get(indiceConnexion).getID(), tCommande.size(), formattedDate));
+        this.sauvegarder();
     }
 
     // Vérification des données entrées à faire !!!
-    public void ajouterVehicule() {
+    public void ajouterVehicule() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez les données :");
         System.out.println();
@@ -1043,6 +1049,7 @@ public class Principale {
         int kilo = sc.nextInt();
         System.out.println("ID_modele :");
         int ID_modele = sc.nextInt();
+        sc.nextLine();
         System.out.println("Date de première mise en circulation :");
         String mec = sc.nextLine();
         System.out.println("Etat :");
@@ -1051,6 +1058,7 @@ public class Principale {
         String dispo = sc.nextLine();
         System.out.println("ID_marque :");
         int ID_marque = sc.nextInt();
+        sc.nextLine();
         System.out.println("Nom modèle :");
         String nom_modele = sc.nextLine();
         System.out.println("Nom marque :");
@@ -1060,11 +1068,12 @@ public class Principale {
         System.out.println("Prix :");
         String prix = sc.nextLine();
         tVehicule.add(new Vehicule(tVehicule.size(), kilo, tEmploye.get(indiceConnexion).getIDConc(), 0, ID_modele, mec, etat, dispo, ID_marque, nom_modele, nom_marque, pays_marque, prix));
+        this.sauvegarder();
         this.accueilEmploye();
     }
 
     // Gestion de la modification en fonction du statut à faire !!!
-    public void modifVehicule() {
+    public void modifVehicule() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int choix = 0;
@@ -1124,10 +1133,11 @@ public class Principale {
                 System.out.println("Choix impossible, réessayez !");
             }
         }
+        this.sauvegarder();
     }
 
     //Permet de choisir son véhicule pour un client
-    public void acheterVehiculeEmploye() {
+    public void acheterVehiculeEmploye() throws IOException {
         boolean b = false;
         boolean b2 = false;
         int nVeh = 0;
@@ -1157,7 +1167,7 @@ public class Principale {
     }
 
     //Mets à jour la base de donnée pour un achat d'un véhicule par un employé
-    public void majAchatVehiculeEmploye(int nVeh, int ID_clt) {
+    public void majAchatVehiculeEmploye(int nVeh, int ID_clt) throws IOException {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = today.format(formatter);
@@ -1165,6 +1175,7 @@ public class Principale {
         tCommande.add(new Commande(tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(),ID_clt, formattedDate, prix));
         tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), tEmploye.get(indiceConnexion).getIDConc(), tFacture.size(), formattedDate, prix));
         tVehicule.get(nVeh).majVente(tCommande.size());
+        this.sauvegarder();
     }
     
     
