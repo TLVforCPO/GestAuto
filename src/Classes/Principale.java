@@ -662,10 +662,13 @@ public class Principale {
                 System.out.println("Le choix ne peut pas être un caractère");
                 b2 = true;
             }
-            if (nArt < tArticle.size() && qt <= tArticle.get(nArt).getStock()) {
-                this.majAchatArticleClient(nArt, qt, 0);
-                b = true;
-            } else {
+            if (nArt < tArticle.size()) {
+                if (qt <= tArticle.get(nArt).getStock()) {
+                    this.majAchatArticleClient(nArt, qt, 0);
+                    this.accueilClient();
+                    b = true;
+                }
+            } else if (b2 == true) {
                 System.out.println("Erreur, réessayez !");
             }
         }
@@ -686,10 +689,13 @@ public class Principale {
                 System.out.println("Le choix ne peut pas être un caractère");
                 b2 = true;
             }
-            if (nVeh < tVehicule.size() && tVehicule.get(nVeh).getEtat().equals("oui")) {
-                this.majAchatVehiculeClient(nVeh, 0);
-                b = true;
-            } else {
+            if (nVeh < tVehicule.size()) {
+                if (tVehicule.get(nVeh).getDispo().equals("oui")) {
+                    this.majAchatVehiculeClient(nVeh, 0);
+                    this.accueilClient();
+                    b = true;
+                }
+            } else if (b2 == false) {
                 System.out.println("Erreur, réessayez !");
             }
         }
@@ -871,14 +877,15 @@ public class Principale {
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.println("Nom article :");
-        String nom_art=sc.nextLine();
+        String nom_art = sc.nextLine();
         System.out.println("Description article :");
-        String desc_art=sc.nextLine();
+        String desc_art = sc.nextLine();
         System.out.println("Prix unitaire :");
-        String PU=sc.nextLine();
+        String PU = sc.nextLine();
         System.out.println("Stock :");
-        int stock=sc.nextInt();
+        int stock = sc.nextInt();
         System.out.println("ID_concession :");
-        int ID_conc=sc.nextInt();
+        int ID_conc = sc.nextInt();
+        tArticle.add(new Article());
     }
 }
