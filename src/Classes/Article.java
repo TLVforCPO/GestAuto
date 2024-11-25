@@ -30,4 +30,12 @@ public class Article {
     public int getStock(){
         return stock_article;
     }
+    
+    public String getPU(){
+        return PU_article;
+    }
+    
+    public void majStock(int stock){
+        stock_article=stock_article-stock;
+    }
 }

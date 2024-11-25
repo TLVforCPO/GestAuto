@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Principale {
 
@@ -139,7 +141,7 @@ public class Principale {
             filewriter.write(tTraiter.get(i).versFichier() + System.lineSeparator());
         }
         //Tableau Véhicule :
-        //ID_vehicule;kilometrage_vehicule;ID_concession;ID_commande;ID_modele;date_mec_vehicule;etat_vehicule;disponibilite_vehicule;ID_marque;nom_modele;nom_marque;pays_marque
+        //ID_vehicule;kilometrage_vehicule;ID_concession;ID_commande;ID_modele;date_mec_vehicule;etat_vehicule;disponibilite_vehicule;ID_marque;nom_modele;nom_marque;pays_marque;prix_vehicule
         filewriter.write("tVehicule" + System.lineSeparator());
         filewriter.write(String.valueOf(tVehicule.size()) + System.lineSeparator());
         for (int i = 0; i < tVehicule.size(); i++) {
@@ -293,7 +295,7 @@ public class Principale {
             System.out.println("taille tVehicule : " + taille);
             for (int i = 0; i < taille; i++) {
                 temp = br.readLine().split(";");
-                tVehicule.add(new Vehicule(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), temp[9], temp[10], temp[11]));
+                tVehicule.add(new Vehicule(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), temp[5], temp[6], temp[7], Integer.parseInt(temp[8]), temp[9], temp[10], temp[11], temp[12]));
             }
         } else {
             System.out.println("tVehicule ko");
@@ -381,7 +383,7 @@ public class Principale {
             for (int i = 0; i < tEmploye.size(); i++) {
                 if (tEmploye.get(i).getEmail().equals(ID)) {
                     if (tEmploye.get(i).getMDP().equals(mdp)) {
-                        //this.accueilEmploye();
+                        this.accueilEmploye();
                         indiceConnexion = i;
                         b = true;
                     } else {
@@ -396,6 +398,7 @@ public class Principale {
         }
     }
 
+    //Page d'accueil espace client
     public void accueilClient() {
         System.out.println();
         System.out.println("ACCUEIL CLIENT :");
@@ -411,6 +414,7 @@ public class Principale {
                 System.out.println("2) Voir les articles disponibles");
                 System.out.println("3) Modifier mes informations");
                 System.out.println("4) Voir mes informations");
+                System.out.println("5) EXIT");
                 System.out.println();
                 System.out.println("Choix :");
                 choix = sc.nextInt();
@@ -419,23 +423,25 @@ public class Principale {
                 b2 = true;
             }
             if (choix == 1) {
-                //this.listeVehicule();
+                this.listeVehiculeClient();
                 b = true;
             } else if (choix == 2) {
-                this.listeArticle();
+                this.listeArticleClient();
                 b = true;
             } else if (choix == 3) {
-                this.modifInfo();
+                this.modifInfoClient();
                 b = true;
             } else if (choix == 4) {
                 System.out.println(tClient.get(indiceConnexion));
+            } else if (choix == 5) {
+                b = true;
             } else if (b2 == false) {
                 System.out.println("Choix impossible, réessayez !");
             }
         }
     }
 
-    public void modifInfo() {
+    public void modifInfoClient() {
         System.out.println();
         System.out.println("Mes informations :");
         boolean b = false;
@@ -564,8 +570,9 @@ public class Principale {
             }
         }
     }
+
     //Permet de lister les articles
-    public void listeArticle() {
+    public void listeArticleClient() {
         System.out.println("LISTE DES ARTICLES :");
         System.out.println();
         for (int i = 0; i < tArticle.size(); i++) {
@@ -590,7 +597,7 @@ public class Principale {
                 b2 = true;
             }
             if (choix == 1) {
-                //this.acheterArticle;
+                this.acheterArticleClient();
                 b = true;
             } else if (choix == 2) {
                 this.accueilClient();
@@ -600,8 +607,46 @@ public class Principale {
             }
         }
     }
-    //Permet de choisir son achat
-    public void acheterArticle() {
+
+    //Permet de lister les véhicules
+    public void listeVehiculeClient() {
+        System.out.println("LISTE DES VEHICULES :");
+        System.out.println();
+        for (int i = 0; i < tVehicule.size(); i++) {
+            System.out.println("Véhicule " + i + " :");
+            System.out.println(tVehicule.get(i));
+        }
+        boolean b = false;
+        boolean b2 = false;
+        int choix = 0;
+        while (b == false) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println();
+                System.out.println("Que voulez-vous faire ?");
+                System.out.println("1) Acheter un véhicule");
+                System.out.println("2) Retourner à l'accueil");
+                System.out.println();
+                System.out.println("Choix :");
+                choix = sc.nextInt();
+            } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                System.out.println("Le choix ne peut pas être un caractère");
+                b2 = true;
+            }
+            if (choix == 1) {
+                this.acheterVehiculeClient();
+                b = true;
+            } else if (choix == 2) {
+                this.accueilClient();
+                b = true;
+            } else if (b2 == false) {
+                System.out.println("Choix impossible, réessayez !");
+            }
+        }
+    }
+
+    //Permet de choisir son article pour un client
+    public void acheterArticleClient() {
         boolean b = false;
         boolean b2 = false;
         int nArt = 0, qt = 0;
@@ -618,15 +663,222 @@ public class Principale {
                 b2 = true;
             }
             if (nArt < tArticle.size() && qt <= tArticle.get(nArt).getStock()) {
-                this.majAchat(nArt,qt);
+                this.majAchatArticleClient(nArt, qt, 0);
                 b = true;
             } else {
                 System.out.println("Erreur, réessayez !");
             }
         }
     }
-    
-    public void majAchat(int nArt, int qt){
-        
+
+    //Permet de choisir son véhicule pour un client
+    public void acheterVehiculeClient() {
+        boolean b = false;
+        boolean b2 = false;
+        int nVeh = 0;
+        while (b == false) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println();
+                System.out.println("Entrez le numéro du véhicule :");
+                nVeh = sc.nextInt();
+            } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                System.out.println("Le choix ne peut pas être un caractère");
+                b2 = true;
+            }
+            if (nVeh < tVehicule.size() && tVehicule.get(nVeh).getEtat().equals("oui")) {
+                this.majAchatVehiculeClient(nVeh, 0);
+                b = true;
+            } else {
+                System.out.println("Erreur, réessayez !");
+            }
+        }
+    }
+
+    //Mets à jour la base de donnée pour un achat d'article par un client
+    public void majAchatArticleClient(int nArt, int qt, int ID_conc) {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = today.format(formatter);
+        int prix = qt * (Integer.parseInt(tArticle.get(nArt).getPU()));
+        tCommande.add(new Commande(tCommande.size(), formattedDate, String.valueOf(prix)));
+        tAcheter.add(new Acheter(tCommande.size(), tArticle.size(), formattedDate, qt));
+        tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), ID_conc, tFacture.size(), formattedDate, String.valueOf(prix)));
+        tArticle.get(nArt).majStock(qt);
+    }
+
+    //Mets à jour la base de donnée pour un achat d'un véhicule par un client
+    public void majAchatVehiculeClient(int nVeh, int ID_conc) {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = today.format(formatter);
+        String prix = tVehicule.get(nVeh).getPrix();
+        tCommande.add(new Commande(tCommande.size(), formattedDate, prix));
+        tFacture.add(new Facture(tClient.get(indiceConnexion).getID(), tCommande.size(), ID_conc, tFacture.size(), formattedDate, prix));
+        tVehicule.get(nVeh).majVente(tCommande.size());
+    }
+
+    //Page d'accueil espace employé
+    public void accueilEmploye() {
+        System.out.println();
+        System.out.println("ACCUEIL EMPLOYE :");
+        boolean b = false;
+        boolean b2 = false;
+        int choix = 0;
+        while (b == false) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println();
+                System.out.println("Que voulez-vous faire ?");
+                System.out.println("1) Créer/modifier un véhicule");
+                System.out.println("2) Créer/modifier un article");
+                System.out.println("3) Vendre un véhicule");
+                System.out.println("4) Vendre un article");
+                System.out.println("5) EXIT");
+                System.out.println();
+                System.out.println("Choix :");
+                choix = sc.nextInt();
+            } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                System.out.println("Le choix ne peut pas être un caractère");
+                b2 = true;
+            }
+            if (choix == 1) {
+                this.listeVehiculeEmploye(false);
+                b = true;
+            } else if (choix == 2) {
+                this.listeArticleEmploye(false);
+                b = true;
+            } else if (choix == 3) {
+                this.listeVehiculeEmploye(true);
+                b = true;
+            } else if (choix == 4) {
+                this.listeArticleEmploye(true);
+                b = true;
+            } else if (choix == 5) {
+                b = true;
+            } else if (b2 == false) {
+                System.out.println("Choix impossible, réessayez !");
+            }
+        }
+    }
+
+    //Permet de lister les articles
+    public void listeArticleEmploye(boolean bool) {
+        System.out.println("LISTE DES ARTICLES :");
+        System.out.println();
+        for (int i = 0; i < tArticle.size(); i++) {
+            System.out.println("Article " + i + " :");
+            System.out.println(tArticle.get(i));
+        }
+        boolean b = false;
+        boolean b2 = false;
+        int choix = 0;
+        if (bool == true) {
+            while (b == true) {
+                try {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println();
+                    System.out.println("Que voulez-vous faire ?");
+                    System.out.println("1) Vendre un article");
+                    System.out.println("2) Retourner à l'accueil");
+                    System.out.println();
+                    System.out.println("Choix :");
+                    choix = sc.nextInt();
+                } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                    System.out.println("Le choix ne peut pas être un caractère");
+                    b2 = true;
+                }
+                if (choix == 1) {
+                    this.acheterArticleClient();
+                    b = true;
+                } else if (choix == 2) {
+                    this.accueilClient();
+                    b = true;
+                } else if (b2 == false) {
+                    System.out.println("Choix impossible, réessayez !");
+                }
+            }
+        } else {
+            while (b == false) {
+                try {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println();
+                    System.out.println("Que voulez-vous faire ?");
+                    System.out.println("1) Modifier un article");
+                    System.out.println("2) Ajouter un article");
+                    System.out.println("3) Retourner à l'accueil");
+                    System.out.println();
+                    System.out.println("Choix :");
+                    choix = sc.nextInt();
+                } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                    System.out.println("Le choix ne peut pas être un caractère");
+                    b2 = true;
+                }
+                if (choix == 1) {
+                    this.modifArticle();
+                    b = true;
+                } else if (choix == 2) {
+                    this.ajouterArticle();
+                    b = true;
+                } else if (choix == 3) {
+                    this.accueilClient();
+                    b = true;
+                } else if (b2 == false) {
+                    System.out.println("Choix impossible, réessayez !");
+                }
+            }
+        }
+    }
+
+    //Permet de lister les véhicules
+    public void listeVehiculeEmploye() {
+        System.out.println("LISTE DES VEHICULES :");
+        System.out.println();
+        for (int i = 0; i < tVehicule.size(); i++) {
+            System.out.println("Véhicule " + i + " :");
+            System.out.println(tVehicule.get(i));
+        }
+        boolean b = false;
+        boolean b2 = false;
+        int choix = 0;
+        while (b == false) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println();
+                System.out.println("Que voulez-vous faire ?");
+                System.out.println("1) Acheter un véhicule");
+                System.out.println("2) Retourner à l'accueil");
+                System.out.println();
+                System.out.println("Choix :");
+                choix = sc.nextInt();
+            } catch (InputMismatchException ex) {  // permet d'éviter les erreurs de frappe (lettres et caratères spéciaux)
+                System.out.println("Le choix ne peut pas être un caractère");
+                b2 = true;
+            }
+            if (choix == 1) {
+                this.acheterVehiculeClient();
+                b = true;
+            } else if (choix == 2) {
+                this.accueilClient();
+                b = true;
+            } else if (b2 == false) {
+                System.out.println("Choix impossible, réessayez !");
+            }
+        }
+    }
+
+    public void ajouterArticle() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Nom article :");
+        String nom_art=sc.nextLine();
+        System.out.println("Description article :");
+        String desc_art=sc.nextLine();
+        System.out.println("Prix unitaire :");
+        String PU=sc.nextLine();
+        System.out.println("Stock :");
+        int stock=sc.nextInt();
+        System.out.println("ID_concession :");
+        int ID_conc=sc.nextInt();
     }
 }

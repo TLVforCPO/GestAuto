@@ -38,4 +38,4 @@ tTraiter
 0;0;18/04/24
 tVehicule
 1
-0;30864;1;0;0;05/07/92;bon;oui;0;RX-7;Mazda;Japon
+0;30864;1;0;0;05/07/92;bon;oui;0;RX-7;Mazda;Japon;30000

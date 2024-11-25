@@ -34,6 +34,10 @@ public class Client {
         return mdp_client;
     }
     
+    public int getID(){
+        return ID_client;
+    }
+    
     public String toString(){
         return "ID_client : "+ID_client+System.lineSeparator()+"nom_client : "+nom_client+System.lineSeparator()+"prenom_client : "+prenom_client+System.lineSeparator()+"adresse_client : "+adresse_client+System.lineSeparator()+"email_client : "+email_client+System.lineSeparator()+"tel_client : "+tel_client+System.lineSeparator()+"mdp_client : "+mdp_client+System.lineSeparator();
     }
