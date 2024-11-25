@@ -38,4 +38,12 @@ public class Employe {
     public String toString(){
         return "ID_employe : "+ID_employe+System.lineSeparator()+"ID_concession : "+ID_concession+System.lineSeparator()+"nom_employe : "+nom_employe+System.lineSeparator()+"prenom_employe : "+prenom_employe+System.lineSeparator()+"adresse_employe : "+adresse_employe+System.lineSeparator()+"email_employe : "+email_employe+System.lineSeparator()+"tel_employe : "+tel_employe+System.lineSeparator()+"statut_employe : "+statut_employe+System.lineSeparator()+"mdp_employe : "+mdp_employe+System.lineSeparator();
     }
+    
+    public int getIDConc(){
+        return ID_concession;
+    }
+    
+    public int getID(){
+        return ID_employe;
+    }
 }

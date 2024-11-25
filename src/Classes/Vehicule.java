@@ -4,6 +4,8 @@
  */
 package Classes;
 
+import java.util.Scanner;
+
 public class Vehicule extends Modele {
 
     //Attributs
@@ -44,5 +46,30 @@ public class Vehicule extends Modele {
     public void majVente(int ID_commande){
         this.ID_commande=ID_commande;
         this.disponibilite_vehicule="non";
+    }
+    
+    public void modifKilo(){
+        System.out.println("Entrez le nouveau kilométrage :");
+        Scanner sc = new Scanner(System.in);
+        int kilo=sc.nextInt();
+        this.kilometrage_vehicule=kilo;
+    }
+    
+    public void modifEtat(){
+        System.out.println("Entrez le nouvel état :");
+        Scanner sc = new Scanner(System.in);
+        String etat=sc.nextLine();
+        this.etat_vehicule=etat;
+    }
+    
+    public void modifPrix(){
+        System.out.println("Entrez le nouveau prix :");
+        Scanner sc = new Scanner(System.in);
+        String prix=sc.nextLine();
+        this.prix_vehicule=prix;
+    }
+    
+    public int getIDConc(){
+        return ID_concession;
     }
 }

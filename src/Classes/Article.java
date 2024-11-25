@@ -4,6 +4,8 @@
  */
 package Classes;
 
+import java.util.Scanner;
+
 public class Article {
     //Attributs
     private int ID_article,stock_article,ID_concession;
@@ -37,5 +39,37 @@ public class Article {
     
     public void majStock(int stock){
         stock_article=stock_article-stock;
+    }
+    
+    public void modifNom(){
+        System.out.println("Entrez le nouveau nom :");
+        Scanner sc = new Scanner(System.in);
+        String nom=sc.nextLine();
+        this.nom_article=nom;
+    }
+    
+    public void modifDesc(){
+        System.out.println("Entrez la nouvelle description :");
+        Scanner sc = new Scanner(System.in);
+        String desc=sc.nextLine();
+        this.desc_article=desc;
+    }
+    // Faire une sécu en cas de mauvaise entrée
+    public void modifStock(){
+        System.out.println("Entrez le nouveau stock :");
+        Scanner sc = new Scanner(System.in);
+        int stock=sc.nextInt();
+        this.stock_article=stock;
+    }
+    
+    public void modifPU(){
+        System.out.println("Entrez le nouveau prix unitaire :");
+        Scanner sc = new Scanner(System.in);
+        String PU=sc.nextLine();
+        this.PU_article=PU;
+    }
+    
+    public int getIDConc(){
+        return ID_concession;
     }
 }
